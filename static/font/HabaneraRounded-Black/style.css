@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Habanera Rounded';
+    src: local('Habanera Rounded Black'), local('Habanera-Rounded-Black'),
+        url('HabaneraRounded-Black.woff2') format('woff2'),
+        url('HabaneraRounded-Black.woff') format('woff'),
+        url('HabaneraRounded-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+  }

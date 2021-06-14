@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+.secondary_color {
+    color: #0dcaf0;
+    /* color: #a4acdc; */
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h4,
+h6 {
+    /* font-family: 'Black Han Sans', sans-serif; */
+    font-family: 'Habanera Rounded';
+    font-weight: 100;
+    text-transform: capitalize;
+}
+
+p {
+    font-family: 'Avalon';
+    letter-spacing: 1.5px;
+    line-height: 1.8;
+}
+
+#header {
+    /* height: 100vh; */
+    min-height: 90vh;
+    padding-top: 10vh;
+}
+
+#header h1 {
+    font-size: 60px;
+    padding: 10px;
+}
+
+#services {
+    padding: 4em 0;
+}
+
+#services a {
+    cursor: pointer;
+    display: block;
+}
+
+#services img {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.service {
+    background: #FFFFFF;
+    transform: translateY(0);
+}
+
+.service1:first {
+    transform: translateY(70px);
+}
+
+
+/* linear-gradient(rgba(0, 92, 151,  0.9), rgba(54, 55, 149,  0.9)), */
+
+
+/** **/
+
+footer {
+    padding: 2em 0;
+}
+
+footer a {
+    text-decoration: none;
+    color: #7b83eb;
+}
+
+footer a:hover {
+    color: #555dc1;
+}
