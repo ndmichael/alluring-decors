@@ -1,0 +1,114 @@
+{% extends 'base.html' %} {% block content %}
+<header id="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6 py-4">
+                <h1 class="">Interior & Exterior Decoration for your Designs.</h1>
+                <p class="pt-2">
+                    Our interiors are an insight into our brains. It is a collaboration of
+                    design, art, humor, irony, functionality, and the street.
+                </p>
+                <p class="pt-4">
+                    <a href="#">
+                        <button class="btn btn-lg rounded-pill btn-info shadow-lg">
+                            EXPLORE PROJECT
+                        </button>
+                    </a>
+                </p>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <div style="transform: translateX(100px)">
+                    <img src="{{url_for('static',
+        filename='images/undraw_creative_team_r90h.svg')}}" class="img-fluid" />
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="services" class="bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-7 mx-auto text-center">
+                <h2>OUR SERVICES</h1>
+                    <p>
+                        Aliqua dolore ex dolor occaecat consectetur deserunt culpa cupidatat
+                        non occaecat occaecat culpa consequat minim. Magna proident aute
+                        exercitation sunt non.
+                    </p>
+            </div>
+        </div>
+        <div class="row pt-4">
+            <div class="col-12 col-sm-3">
+                <a class="shadow-sm service">
+                    <img src="{{url_for('static',filename='images/house1.jpg')}}" alt="" class="img-fluid" />
+                    <div class="p-3">
+                        <small class="secondary_color">Interior & Exterior Designs </small>
+                        <h3 class="pt-2 pb-4">House Decoration</h3>
+                    </div>
+                </a>
+
+            </div>
+            <div class="col-12 col-sm-3">
+                <a class="shadow-sm service">
+                    <img src="{{url_for('static',filename='images/office1.jpg')}}" alt="" class="img-fluid" />
+                    <div class="p-3">
+                        <small class="secondary_color">Decoration & Furnishing </small>
+                        <h3 class="pt-2 pb-4">Office Decoration</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="col-12 col-sm-3">
+                <a class="shadow-sm service">
+                    <img src="{{url_for('static',filename='images/hall1.jpg')}}" alt="" class="img-fluid" />
+                    <div class="p-3">
+                        <small class="secondary_color">Banquet, & Parties </small>
+                        <h3 class="pt-2 pb-4">Banquet Hall </h3>
+                    </div>
+                </a>
+            </div>
+            <div class="col-12 col-sm-3">
+                <a class="shadow-sm service" >
+                    <img src="{{url_for('static',filename='images/restaurant1.jpg')}}" alt="" class="img-fluid" />
+                    <div class="p-3">
+                        <small class="secondary_color">Decorating & Furnsihing </small>
+                        <h3 class="pt-2 pb-4">Restaurant Decor</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="row pt-5">
+            <div class="col-12 col-sm-8 mx-auto ">
+                <a href="#" class=" d-grid col-6 mx-auto">
+                    <button class="btn btn-lg btn-block btn-info rounded-pill"> View All Services </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="ongoing-project">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6">
+            </div>
+
+            <div class="col-12 col-md-6">
+                <p>
+                    <i> </i>
+                </p>
+                <h4>
+                    On Going Services, Customer Smiles.
+                </h4>
+                <p>
+
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock content %}
