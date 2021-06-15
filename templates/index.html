@@ -2,8 +2,8 @@
 <header id="header">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-6 py-4">
-                <h1 class="">Interior & Exterior Decoration for your Designs.</h1>
+            <div class="col-12 col-md-6 py-4 pr-4">
+                <h1 class="" style="text-transform:uppercase;">Interior & Exterior Decoration for your Designs.</h1>
                 <p class="pt-2">
                     Our interiors are an insight into our brains. It is a collaboration of
                     design, art, humor, irony, functionality, and the street.
@@ -11,14 +11,14 @@
                 <p class="pt-4">
                     <a href="#">
                         <button class="btn btn-lg rounded-pill btn-info shadow-lg">
-                            EXPLORE PROJECT
+                            START EXPLORING
                         </button>
                     </a>
                 </p>
             </div>
 
             <div class="col-12 col-md-6">
-                <div style="transform: translateX(100px)">
+                <div>
                     <img src="{{url_for('static',
         filename='images/undraw_creative_team_r90h.svg')}}" class="img-fluid" />
                 </div>
@@ -69,7 +69,7 @@
                 </a>
             </div>
             <div class="col-12 col-sm-3">
-                <a class="shadow-sm service" >
+                <a class="shadow-sm service">
                     <img src="{{url_for('static',filename='images/restaurant1.jpg')}}" alt="" class="img-fluid" />
                     <div class="p-3">
                         <small class="secondary_color">Decorating & Furnsihing </small>
@@ -80,8 +80,8 @@
         </div>
 
         <div class="row pt-5">
-            <div class="col-12 col-sm-8 mx-auto ">
-                <a href="#" class=" d-grid col-6 mx-auto">
+            <div class="col-12 col-sm-8 mx-auto pt-3">
+                <a href="#" class=" d-grid col-12 col-md-6 mx-auto">
                     <button class="btn btn-lg btn-block btn-info rounded-pill"> View All Services </button>
                 </a>
             </div>
@@ -89,22 +89,32 @@
     </div>
 </section>
 
-<section id="ongoing-project">
+<section id="ongoing-project" class="py-5">
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-6">
+                <div>
+                    <img src="{{url_for('static',filename='images/project1.jpg')}}" alt="" class="img-fluid shadow-lg" />
+                </div>
             </div>
 
             <div class="col-12 col-md-6">
-                <p>
-                    <i> </i>
-                </p>
-                <h4>
-                    On Going Services, Customer Smiles.
-                </h4>
-                <p>
-
-                </p>
+                <div class="p-5">
+                    <h4>
+                        On Going Project, We make our Clients Smile.
+                    </h4>
+                    <p class="pt-2 pb-5">
+                        Cillum eu ex aute magna amet exercitation ut ex.
+                        Ad eiusmod officia velit quis laboris qui Lorem laboris exercitation adipisicing.
+                        Sunt elit velit ad aute elit sunt sunt sint adipisicing reprehenderit.
+                        Ipsum aute fugiat qui velit irure tempor.
+                    </p>
+                    <div>
+                        <a href="#" class=" d-grid col-6 shadow btn btn-lg btn-block btn-info rounded-pill">
+                            View Projects 
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
