@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -42,7 +43,7 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav  mb-2 mb-lg-0">
-                <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="#">
                             <button class="btn btn-white">login</button>
                         </a>
@@ -55,6 +56,20 @@
         </div>
     </nav>
 
+    {% with messages= get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="row py-2">
+        <div class="mx-auto col-sm-6">
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                <h5>{{ message }}</h5>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    {% endwith %}
+
     {% block content %}
 
     {% endblock content %}
@@ -64,25 +79,13 @@
     <footer class="border-top bg-light">
         <div class=" container">
             <div class="row">
-                <div class="col-12 col-md-4 offset-md-4 text-center">
-                    <div class="d-flex justify-content-evenly">
-                      <a href="">
-                        <i class=" icofont icofont-2x icofont-whatsapp rounded-circle border p-2"></i>
-                      </a>
-                      <a href="">
-                        <i class=" icofont icofont-2x icofont-contact-add rounded-circle border p-2"></i>
-                      </a>
-                      <a href="">
-                        <i class=" icofont icofont-2x icofont-facebook rounded-circle border p-2"></i>
-                      </a> 
-                      <a href="">
-                        <i class=" icofont icofont-2x icofont-linkedin rounded-circle border p-2"></i>
-                      </a> 
-                    </div> <br /> <br />
-                    <div> 
-                      <p><b class=" secondary_color"> &copy; </b> Supersonic Delivery Services | Terms  </p>
+                <div class="col-12 col-md-6 offset-md-3 text-center">
+                    <div>
+                        <p><b class=" secondary_color"> &copy; </b> Alluring Decoration | Terms | Aptech Final Year
+                            Project </p>
+                        <p>Design by <b class="secondary_color">Umaru Sadiq </b>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
