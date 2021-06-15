@@ -29,6 +29,7 @@ p {
     font-family: 'Avalon';
     letter-spacing: 1.5px;
     line-height: 1.8;
+    font-size: 18px;
 }
 
 #header {
@@ -49,6 +50,7 @@ p {
 #services a {
     cursor: pointer;
     display: block;
+    font-weight: 700;
 }
 
 #services img {
@@ -74,7 +76,7 @@ p {
 /** **/
 
 footer {
-    padding: 2em 0;
+    padding: 1em 0;
 }
 
 footer a {
