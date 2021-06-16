@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for, flash, redirect
 from alluringdecors.forms import RegistrationForm, LoginForm
 from alluringdecors.models import User, Category_project, Project
 from alluringdecors import app, db, bcrypt
-from flask_login import login_user
+from flask_login import login_user, current_user
 
 @app.route("/")
 def index():
@@ -14,6 +14,8 @@ def about():
 
 @app.route("/register/", methods=['GET', 'POST'])
 def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -26,6 +28,8 @@ def register():
 
 @app.route("/login/", methods=['GET', 'POST'])
 def login():   
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
