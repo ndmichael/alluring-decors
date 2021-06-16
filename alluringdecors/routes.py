@@ -1,8 +1,8 @@
-from flask import Flask, render_template, url_for, flash, redirect
+from flask import Flask, render_template, url_for, flash, redirect, request
 from alluringdecors.forms import RegistrationForm, LoginForm
 from alluringdecors.models import User, Category_project, Project
 from alluringdecors import app, db, bcrypt
-from flask_login import login_user, current_user
+from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route("/")
 def index():
@@ -35,8 +35,21 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
+            next_page = request.args.get('next')
             flash(f'You are login as {user.username}', 'success')
-            return redirect(url_for('index'))
+            return redirect(next_page) if next_page else redirect(url_for('index'))
         else:
             flash(f'login unsuccessful check email or password', 'success')
     return render_template("login.html", title='Login', form=form)
+
+
+@app.route("/logout/")
+def logout():   
+    logout_user()
+    flash(f'You have been logout, Please login again', 'danger')
+    return redirect(url_for('login'))
+
+@app.route("/account/")
+@login_required
+def account():  
+    return render_template('account.html', title='account') 
