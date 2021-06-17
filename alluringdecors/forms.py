@@ -45,7 +45,7 @@ class NewProjectForm(FlaskForm):
     submit = SubmitField('Create Project')
 
 
-# class FAQForm(FlaskForm):
-#     question = StringField('Project Name', validators=[DataRequired()])
-#     answer = TextAreaField('Project Name', validators=[DataRequired()])
-#     submit = SubmitField('Create')
+class FAQForm(FlaskForm):
+    question = StringField('Project Name', validators=[DataRequired()])
+    answer = TextAreaField('Project Name', validators=[DataRequired()])
+    submit = SubmitField('Submit')
