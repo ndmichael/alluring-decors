@@ -36,3 +36,12 @@ class Project(db.Model):
 
     def __repr__(self):
         return f'{self.name}'
+
+
+# class FAQ(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     question = db.Column(db.String(150), nullable=False)
+#     answer = db.Column(db.String(400), nullable=False)
+
+#     def __repr__(self):
+#         return f'{self.question}'
