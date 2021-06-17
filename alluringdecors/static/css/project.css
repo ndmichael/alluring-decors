@@ -1,0 +1,28 @@
+#project .proj-category {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+}
+
+.proj-category img:hover {
+    object-fit: cover;
+    object-position: top;
+    filter: brightness(1);
+    transform: translateY(-10px);
+}
+
+#project .proj-category img {
+    filter: brightness(0.6);
+    height: 350px;
+    object-fit: cover;
+    transition: transform .2s;
+    margin: 15px 0;
+}
+
+#project .proj-category h2 {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    color: whitesmoke;
+    text-shadow: 0 2px black;
+}
