@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<section>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div>
+                    <img src="{{url_for('static', filename='images/project_images/' + project.image_file)}}"
+                        class="img-fluid img-thumbnail shadow-sm" style="height:450px; width:100%; object-fit:cover;" />
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 d-flex align-items-center">
+                <div class="px-5">
+                    <h2>
+                        {{project.name}}
+                    </h2>
+                    <p class="pt-2 pb-5">
+                        {{project.description}}
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock content %}

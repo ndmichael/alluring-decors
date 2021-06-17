@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<section>
+    <div class="container py-5">
+        <div class="row">
+            {% if projects %}
+            {% for project in projects %}
+            <div class="col-12 col-md-6 py-4">
+                <img src="{{url_for('static', filename='images/project_images/' + project.image_file)}}"
+                    class="img-fluid img-thumbnail" style="height:350px; width:100%; object-fit:cover;" />
+                <div>
+                    <p> {{category}} </p>
+
+                    <h2>{{project.name}}</h2>
+                    <a href="{{url_for('project_detail', project_id=project.id)}}" class="btn btn-lg btn-outline-info">
+                        More Details
+                    </a>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-12 col-md-6 py-4">
+                <div>
+                    <h2>Category Empty</h2>
+                    
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+        </div>
+    </div>
+</section>
+{% endblock content %}

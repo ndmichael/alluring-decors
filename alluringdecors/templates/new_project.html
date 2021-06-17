@@ -1,0 +1,92 @@
+{% extends 'base.html' %} {% block content %}
+<section class="">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-12 col-md-5 mx-auto">
+                <legend class="">
+                    <h3>Create New Project </h3>
+                </legend>
+                <form action="" method="POST" enctype="multipart/form-data" class="border rounded p-3">
+                    {{form.hidden_tag()}}
+
+                    <fieldset>
+                        <div class="form-group">
+                            {{form.category.label(class="form-control-label pb-2")}}
+                            {% if form.category.errors %}
+                            {{form.category(class="form-select form-select-lg  is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in form.category.errors %}
+                                <span> {{error}} </span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{form.category(class="form-select form-select-lg")}}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{form.name.label(class="form-control-label pb-2")}}
+                            {% if form.name.errors %}
+                            {{form.name(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in form.name.errors %}
+                                <span> {{error}} </span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{form.name(class="form-control form-control-lg")}}
+                            {% endif %}
+
+                        </div>
+                        <div class="form-group">
+                            {{form.client.label(class="form-control-label pb-2")}}
+                            {% if form.client.errors %}
+                            {{form.client(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in form.client.errors %}
+                                <span> {{error}} </span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{form.client(class="form-control form-control-lg")}}
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            {{form.description.label(class="form-control-label pb-2")}}
+                            {% if form.description.errors %}
+                            {{form.description(class="form-control form-control-lg is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in form.description.errors %}
+                                <span> {{error}} </span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{form.description(class="form-control form-control-lg")}}
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            {{form.picture.label()}}
+                            {{form.picture(class="custom-file-input form-control")}}
+                            {% if form.picture.errors %}
+                            {%for error in form.picture.errors %}
+                                <span class="text-danger"> {{error}} </span>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group py-3">
+                            {{form.submit(class="btn btn-info btn-lg")}}
+                        </div>
+                    </fieldset>
+                    <small>return to admin dashboard: </small>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+{% endblock content %}

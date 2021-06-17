@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/navbar.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/project.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='font/HabaneraRounded-Black/style.css')}}">
 </head>
 
@@ -30,7 +31,7 @@
                         <a class="nav-link" href="{{url_for('about')}}">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Projects</a>
+                        <a class="nav-link" href="{{url_for('project')}}">Projects</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="">Services</a>

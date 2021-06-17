@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% block content %}
+
+<section id="project" class="py-5 px-2">
+    <div class="container">
+    <div class="row">
+        <div class="col-12 border-bottom mb-3">
+            <h1>Projects </h1>
+            <p>Click on any images to explore projects by Category. </p>
+        </div>
+    </div>
+        <div class="row pt-3">
+            <div class="col-12 col-md-4">
+                <a class="proj-category" href="{{url_for('ongoing_project', slug='ongoing project')}}">
+                    <img src="{{url_for('static',filename='images/project1.jpg')}}" class="img-fluid shadow" />
+                    <h2 class="h3 text-center">On-going Project </h2>
+                </a>
+            </div>
+            <div class="col-12 col-md-4">
+                <a class="proj-category" href="{{url_for('upcoming_project', slug='upcoming project')}}">
+                    <img src="{{url_for('static',filename='images/project1.jpg')}}" class="img-fluid" />
+                    <h2 class="h3 text-center">Up-coming Project </h2>
+                </a>
+            </div>
+            <div class="col-12 col-md-4">
+                <a class="proj-category" href="{{url_for('accomplished_project', slug='accomplished project')}}">
+                    <img src="{{url_for('static',filename='images/project1.jpg')}}" class="img-fluid" />
+                    <h2 class="h3 text-center">Accomplished Project </h2>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock content %}
