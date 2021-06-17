@@ -1,8 +1,8 @@
 import secrets
 import os
 from flask import Flask, render_template, url_for, flash, redirect, request
-from alluringdecors.forms import RegistrationForm, LoginForm, NewProjectForm, ProjectCategoryForm
-from alluringdecors.models import User, Category_project, Project
+from alluringdecors.forms import RegistrationForm, LoginForm, NewProjectForm, ProjectCategoryForm, FAQForm
+from alluringdecors.models import User, Category_project, Project, FAQ
 from alluringdecors import app, db, bcrypt
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -123,3 +123,15 @@ def project_category():
         flash(f'New category Created', 'success')
         return redirect(url_for('project_category'))
     return render_template('create_cat_project.html', title='create category Project', form=form) 
+
+
+@app.route("/faq/", methods=['GET', 'POST'])
+def faq(): 
+    form = FAQForm()
+    if form.validate_on_submit():
+        faq = FAQ(question=form.question.data, answer=form.answer.data)
+        db.session.add(faq)
+        db.session.commit()
+        flash(f'New FAQ "{form.question.data}" Created', 'success')
+        return redirect(url_for('faq'))
+    return render_template('faq.html', title='create category Project', form=form) 
