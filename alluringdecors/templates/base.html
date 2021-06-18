@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/navbar.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/project.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/icofont/icofont.min.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='font/HabaneraRounded-Black/style.css')}}">
 </head>
 
@@ -37,10 +38,10 @@
                         <a class="nav-link" href="">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Feedbacks</a>
+                        <a class="nav-link" href="{{url_for('feedback')}}">Feedbacks</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">FAQ</a>
+                        <a class="nav-link" href="{{url_for('faq')}}">FAQ</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav  mb-2 mb-lg-0">
