@@ -43,6 +43,7 @@ class FAQ(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     question = db.Column(db.String(150), nullable=False)
     answer = db.Column(db.String(400), nullable=False)
+    date_added= db.Column(db.DateTime(200), nullable=False, default=datetime.utcnow)
 
     def __repr__(self):
         return f'{self.question}'
@@ -54,7 +55,17 @@ class Feedback(db.Model):
     quality = db.Column(db.String(10), nullable=False)
     suggestion = db.Column(db.String(400), nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    date_added= db.Column(db.DateTime(200), nullable=False, default=datetime.utcnow)
+    date_sent= db.Column(db.DateTime(200), nullable=False, default=datetime.utcnow)
 
     def __repr__(self):
         return f'{self.question}'
+
+
+class Contact(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(50), nullable=False)
+    detail = db.Column(db.String(150), nullable=False)
+    date_added= db.Column(db.DateTime(200), nullable=False, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f'{self.title}'

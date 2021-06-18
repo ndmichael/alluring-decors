@@ -1,8 +1,12 @@
 import secrets
 import os
 from flask import Flask, render_template, url_for, flash, redirect, request
-from alluringdecors.forms import RegistrationForm, LoginForm, NewProjectForm, ProjectCategoryForm, FAQForm, FeedbackForm
-from alluringdecors.models import User, Category_project, Project, FAQ, Feedback
+from alluringdecors.forms import (
+                                    RegistrationForm, LoginForm, 
+                                    NewProjectForm, ProjectCategoryForm, 
+                                    FAQForm, FeedbackForm, ContactForm
+                                )
+from alluringdecors.models import User, Category_project, Project, FAQ, Feedback, Contact
 from alluringdecors import app, db, bcrypt
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -127,7 +131,7 @@ def project_category():
 
 @app.route("/faq/", methods=['GET', 'POST'])
 def faq(): 
-    faqs = FAQ.query.all() 
+    faqs = FAQ.query.all().order_by(FAQ.date_added.desc()) 
     form = FAQForm()
     if form.validate_on_submit():
         faq = FAQ(question=form.question.data, answer=form.answer.data)
@@ -146,7 +150,21 @@ def feedback():
         db.session.commit()
         flash(f'Feedback sent successfully', 'success')
         return redirect(url_for('index'))
-    return render_template('feedbackform.html', title='send feedback', form=form) 
+    return render_template('feedbackform.html', title='send feedback', form=form)
+
+
+@app.route("/contact/", methods=['GET', 'POST'])
+def contact():
+    contacts = Contact.query.order_by(Contact.date_added.desc())
+    form = ContactForm()
+    if form.validate_on_submit():
+        contact = Contact(title=form.title.data, detail=form.detail.data)
+        db.session.add(contact)
+        db.session.commit()
+        flash(f'New Contact Added', 'success')
+        return redirect(url_for('contact'))
+    return render_template('contact.html', title='Alluring Contact', form=form, contacts=contacts) 
+
 
 @app.route("/admin/")
 def admin():

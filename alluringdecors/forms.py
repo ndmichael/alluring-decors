@@ -59,3 +59,8 @@ class FeedbackForm(FlaskForm):
     quality = SelectField('Rate Us:', choices=choices, default="excellent")
     suggestion = TextAreaField('Any Suggesions:')
     submit = SubmitField('Send Feedback')
+
+class ContactForm(FlaskForm):
+    title = StringField('Title:', validators=[DataRequired()])
+    detail = StringField('Detail:', validators=[DataRequired()])
+    submit = SubmitField('Add Contact')
