@@ -46,6 +46,16 @@ class NewProjectForm(FlaskForm):
 
 
 class FAQForm(FlaskForm):
-    question = StringField('Project Name', validators=[DataRequired()])
-    answer = TextAreaField('Project Name', validators=[DataRequired()])
+    question = StringField('Question:', validators=[DataRequired()])
+    answer = TextAreaField('Answer:', validators=[DataRequired()])
     submit = SubmitField('Submit')
+
+class FeedbackForm(FlaskForm):
+    choices = (
+        ('excellent', 'EXCELLENT'),
+        ('good', 'Good'),
+        ('bad', 'BAD'),
+    )
+    quality = SelectField('Rate Us:', choices=choices, default="excellent")
+    suggestion = TextAreaField('Any Suggesions:')
+    submit = SubmitField('Send Feedback')

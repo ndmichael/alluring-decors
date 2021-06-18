@@ -13,6 +13,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(40), nullable=False)
     is_staff = db.Column(db.Boolean,)
     is_active = db.Column(db.Boolean,)
+    feedbacks = db.relationship('Feedback', backref='feedback', lazy=True)
 
     def __repr__(self):
         return f'{self.username}'
@@ -42,6 +43,18 @@ class FAQ(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     question = db.Column(db.String(150), nullable=False)
     answer = db.Column(db.String(400), nullable=False)
+
+    def __repr__(self):
+        return f'{self.question}'
+
+
+class Feedback(db.Model):
+    
+    id = db.Column(db.Integer, primary_key=True)
+    quality = db.Column(db.String(10), nullable=False)
+    suggestion = db.Column(db.String(400), nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    date_added= db.Column(db.DateTime(200), nullable=False, default=datetime.utcnow)
 
     def __repr__(self):
         return f'{self.question}'
