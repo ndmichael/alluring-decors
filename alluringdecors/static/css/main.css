@@ -26,10 +26,12 @@ h6 {
 }
 
 p {
-    font-family: 'Avalon';
-    letter-spacing: 1.5px;
-    line-height: 1.8;
-    font-size: 18px;
+    /* font-family: 'Avalon'; */
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 1.1px;
+    line-height: 1.5;
+    font-size: 16px;
+    color: #5f6368;
 }
 
 #header {
