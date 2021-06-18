@@ -1,8 +1,8 @@
 import secrets
 import os
 from flask import Flask, render_template, url_for, flash, redirect, request
-from alluringdecors.forms import RegistrationForm, LoginForm, NewProjectForm, ProjectCategoryForm, FAQForm
-from alluringdecors.models import User, Category_project, Project, FAQ
+from alluringdecors.forms import RegistrationForm, LoginForm, NewProjectForm, ProjectCategoryForm, FAQForm, FeedbackForm
+from alluringdecors.models import User, Category_project, Project, FAQ, Feedback
 from alluringdecors import app, db, bcrypt
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -127,6 +127,7 @@ def project_category():
 
 @app.route("/faq/", methods=['GET', 'POST'])
 def faq(): 
+    faqs = FAQ.query.all() 
     form = FAQForm()
     if form.validate_on_submit():
         faq = FAQ(question=form.question.data, answer=form.answer.data)
@@ -134,4 +135,15 @@ def faq():
         db.session.commit()
         flash(f'New FAQ "{form.question.data}" Created', 'success')
         return redirect(url_for('faq'))
-    return render_template('faq.html', title='create category Project', form=form) 
+    return render_template('faq.html', title='create category Project', form=form, faqs=faqs) 
+
+@app.route("/feedback/", methods=['GET', 'POST'])
+def feedback(): 
+    form = FeedbackForm()
+    if form.validate_on_submit():
+        feedback = Feedback(quality=form.quality.data, suggestion=form.suggestion.data, feedback=current_user)
+        db.session.add(feedback)
+        db.session.commit()
+        flash(f'Feedback sent successfully', 'success')
+        return redirect(url_for('index'))
+    return render_template('feedbackform.html', title='create category Project', form=form) 
