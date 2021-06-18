@@ -2,12 +2,19 @@
 <section class="">
     <div class="container py-5">
         <div class="row">
-            <div class="col-12 col-md-7">
-
+            <div class="col-12 col-md-5 mx-auto">
+                <div class="row">
+                {% for faq in faqs %}
+                    <div class="col-12 p-3 shadow-sm my-2">
+                        <h3>{{faq.question}} </h3>
+                        <p>{{faq.answer}}</p>
+                    </div>
+                {% endfor %}
+                </div>
             </div>
             <div class="col-12 col-md-5">
                 <legend class="">
-                    <h3>Create New Project </h3>
+                    <h3>Create New FAQ </h3>
                 </legend>
                 <form action="" method="POST" enctype="multipart/form-data" class="border rounded p-3">
                     {{form.hidden_tag()}}
