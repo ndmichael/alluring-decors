@@ -146,4 +146,8 @@ def feedback():
         db.session.commit()
         flash(f'Feedback sent successfully', 'success')
         return redirect(url_for('index'))
-    return render_template('feedbackform.html', title='create category Project', form=form) 
+    return render_template('feedbackform.html', title='send feedback', form=form) 
+
+@app.route("/admin/")
+def admin():
+     return render_template('admin.html', title='admin') 
