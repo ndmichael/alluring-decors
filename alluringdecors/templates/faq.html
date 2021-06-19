@@ -8,13 +8,45 @@
                     <div class="col-12 p-3 shadow-sm my-2">
                         <h3>{{faq.question}} </h3>
                         <p>{{faq.answer}}</p>
+
+                        <a href="{{url_for('faq_update', faq_id=faq.id)}}" class="btn btn-sm btn-warning">
+                            update faq
+                        </a>
+
+                        <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                            delete faq
+                        </button>
+                    </div>
+
+                    <!-- modal for delete -->
+                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel">Delete Contact</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    are you sure you wish to delete FAQ permanently from the system? <br />
+                                    else consider update instead.
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <a href="{{url_for('faq_delete', faq_id=faq.id)}}" type="button"
+                                        class="btn btn-danger">Delete</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 {% endfor %}
                 </div>
             </div>
             <div class="col-12 col-md-5">
                 <legend class="">
-                    <h3>Create New FAQ </h3>
+                    <h3> {{title}} </h3>
                 </legend>
                 <form action="" method="POST" enctype="multipart/form-data" class="border rounded p-3">
                     {{form.hidden_tag()}}
