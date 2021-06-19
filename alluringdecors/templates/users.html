@@ -11,12 +11,36 @@
                         <p><b>Email</b>: {{user.email}} </p>
                             <p><b>Staff</b>: {{user.is_staff}}  <br /></p>
 
-                        <a href="{{url_for('deactivate_user', id=user.id)}}" class="btn btn-danger">
+                        <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
                             <i class="icofont icofont-1x icofont-delete-alt"></i>
                         </a>
                     </div>
                 </div>
             </div>
+
+            <!-- modal for delete -->
+                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel">Delete User</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    This temporary delete a user <br />
+                                    user exist in database but not active.
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <a href="{{url_for('deactivate_user', id=user.id)}}" type="button"
+                                        class="btn btn-danger">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             {% endfor %}
 
         </div>
