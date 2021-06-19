@@ -43,7 +43,7 @@ class FAQ(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     question = db.Column(db.String(150), nullable=False)
     answer = db.Column(db.String(400), nullable=False)
-    date_added= db.Column(db.DateTime(200), nullable=False, default=datetime.utcnow)
+    # date_added= db.Column(db.DateTime(200), nullable=False, default=datetime.utcnow)
 
     def __repr__(self):
         return f'{self.question}'
