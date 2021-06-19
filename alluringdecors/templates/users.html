@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block content %}
+<section class="">
+    <div class="container py-5">
+        <div class="row">
+            {% for user in users %}
+            <div class="col-12 col-md-4">
+                <div>
+                    <i class="icofont icofont-5x icofont-user-alt-1 border-end icofont-pull-left pt-5"></i>
+                    <div class="">
+                        <h3 class="h5">Name: <span> {{user.username}} </span></h3>
+                        <p><b>Email</b>: {{user.email}} </p>
+                            <p><b>Staff</b>: {{user.is_staff}}  <br /></p>
+
+                        <a href="{{url_for('deactivate_user', id=user.id)}}" class="btn btn-danger">
+                            <i class="icofont icofont-1x icofont-delete-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+
+{% endblock content %}
