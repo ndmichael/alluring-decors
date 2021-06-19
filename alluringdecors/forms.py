@@ -63,4 +63,4 @@ class FeedbackForm(FlaskForm):
 class ContactForm(FlaskForm):
     title = StringField('Title:', validators=[DataRequired()])
     detail = StringField('Detail:', validators=[DataRequired()])
-    submit = SubmitField('Add Contact')
+    submit = SubmitField('Submit Contact')
