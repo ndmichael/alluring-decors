@@ -131,7 +131,8 @@ def project_category():
 
 @app.route("/faq/", methods=['GET', 'POST'])
 def faq(): 
-    faqs = FAQ.query.all().order_by(FAQ.date_added.desc()) 
+    # faqs = FAQ.query.all().order_by(FAQ.date_added.desc()) 
+    faqs = FAQ.query.all()
     form = FAQForm()
     if form.validate_on_submit():
         faq = FAQ(question=form.question.data, answer=form.answer.data)
@@ -139,7 +140,35 @@ def faq():
         db.session.commit()
         flash(f'New FAQ "{form.question.data}" Created', 'success')
         return redirect(url_for('faq'))
-    return render_template('faq.html', title='create category Project', form=form, faqs=faqs) 
+    return render_template('faq.html', title='create category Project', legend="Add Faq", form=form, faqs=faqs) 
+
+
+@app.route("/faq/<int:faq_id>/update", methods=['GET', 'POST'])
+def faq_update(faq_id):
+    faqs = FAQ.query.all()
+    faq = FAQ.query.get_or_404(faq_id)
+    form = FAQForm()
+    if form.validate_on_submit():
+        faq.question= form.question.data
+        faq.answer= form.answer.data
+        db.session.commit()
+        flash(f'FAQ"{faq.question}" Successfully Updated', 'success')
+        return redirect(url_for('faq'))
+    elif request.method == 'GET':
+        form.question.data = faq.question
+        form.answer.data = faq.answer
+        
+    return render_template('faq.html', title='update FAQ', legend="Update Faq", form=form, faqs=faqs) 
+
+@app.route("/faq/<int:faq_id>/delete", methods=['GET','POST'])
+def faq_delete(faq_id):
+    faq = FAQ.query.get_or_404(faq_id)
+    db.session.delete(faq)
+    db.session.commit()
+    flash(f'faq"{faq.question}" deleted', 'danger')
+    return redirect(url_for('faq'))
+
+
 
 @app.route("/feedback/", methods=['GET', 'POST'])
 def feedback(): 
@@ -151,6 +180,7 @@ def feedback():
         flash(f'Feedback sent successfully', 'success')
         return redirect(url_for('index'))
     return render_template('feedbackform.html', title='send feedback', form=form)
+
 
 
 @app.route("/contact/", methods=['GET', 'POST'])
