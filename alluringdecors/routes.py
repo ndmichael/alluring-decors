@@ -182,7 +182,7 @@ def contact_update(contact_id):
         
     return render_template('contact.html', title='Alluring Contact', legend="Update Contact", form=form, contacts=contacts) 
 
-@app.route("/contact/<int:contact_id>/delete", methods=['GET', 'POST'])
+@app.route("/contact/<int:contact_id>/delete", methods=['GET','POST'])
 def contact_delete(contact_id):
     contact = Contact.query.get_or_404(contact_id)
     db.session.delete(contact)
