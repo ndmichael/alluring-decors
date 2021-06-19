@@ -4,17 +4,47 @@
         <div class="row">
             <div class="col-12 col-md-5 mx-auto">
                 <div class="row">
-                {% for contact in contacts %}
+                    {% for contact in contacts %}
                     <div class="col-12 p-3 shadow-sm my-2">
                         <h3>{{contact.title}} </h3>
                         <p>{{contact.detail}}</p>
+                        <a href="{{url_for('contact_update', contact_id=contact.id)}}" class="btn btn-sm btn-warning">
+                            update contact
+                        </a>
+
+                        <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                            delete contact
+                        </button>
                     </div>
-                {% endfor %}
+
+                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel">Delete Contact</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    are you sure you wish to delete contact permanently from the system? <br />
+                                    else consider update instead.
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <a href="{{url_for('contact_delete', contact_id=contact.id)}}" type="button"
+                                        class="btn btn-danger">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
             <div class="col-12 col-md-5">
                 <legend class="">
-                    <h3>Add New Contact Detials </h3>
+                    <h3>{{legend}} </h3>
                 </legend>
                 <form action="" method="POST" enctype="multipart/form-data" class="border rounded p-3">
                     {{form.hidden_tag()}}
