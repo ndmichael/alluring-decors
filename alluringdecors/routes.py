@@ -163,9 +163,47 @@ def contact():
         db.session.commit()
         flash(f'New Contact Added', 'success')
         return redirect(url_for('contact'))
-    return render_template('contact.html', title='Alluring Contact', form=form, contacts=contacts) 
+    return render_template('contact.html', title='Alluring Contact', legend="Add New Contact", form=form, contacts=contacts) 
+
+@app.route("/contact/<int:contact_id>/update", methods=['GET', 'POST'])
+def contact_update(contact_id):
+    contacts = Contact.query.order_by(Contact.date_added.desc())
+    contact = Contact.query.get_or_404(contact_id)
+    form = ContactForm()
+    if form.validate_on_submit():
+        contact.title= form.title.data
+        contact.detail= form.detail.data
+        db.session.commit()
+        flash(f'Contact "{contact.title}" Successfully Updated', 'success')
+        return redirect(url_for('contact'))
+    elif request.method == 'GET':
+        form.title.data = contact.title
+        form.detail.data = contact.detail
+        
+    return render_template('contact.html', title='Alluring Contact', legend="Update Contact", form=form, contacts=contacts) 
+
+@app.route("/contact/<int:contact_id>/delete", methods=['GET', 'POST'])
+def contact_delete(contact_id):
+    contact = Contact.query.get_or_404(contact_id)
+    db.session.delete(contact)
+    db.session.commit()
+    flash(f'Contact "{contact.title}" deleted', 'danger')
+    return redirect(url_for('contact'))
 
 
 @app.route("/admin/")
 def admin():
-     return render_template('admin.html', title='admin') 
+    return render_template('admin.html', title='admin') 
+
+@app.route("/users/")
+def users():
+    users = User.query.filter_by(is_active=True).order_by(User.id.desc())
+    return render_template('users.html', title='users', users=users) 
+
+@app.route("/users/<int:id>")
+def deactivate_user(id):
+    user = User.query.get_or_404(id)
+    user.is_active = False
+    db.session.add(user)
+    db.session.commit()
+    return redirect(url_for('users')) 
