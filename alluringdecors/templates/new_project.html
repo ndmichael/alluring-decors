@@ -67,7 +67,7 @@
 
                         <div class="form-group">
                             {{form.picture.label()}}
-                            {{form.picture(class="custom-file-input form-control")}}
+                            {{form.picture(class="form-control form-control-file")}}
                             {% if form.picture.errors %}
                             {%for error in form.picture.errors %}
                                 <span class="text-danger"> {{error}} </span>
@@ -79,7 +79,7 @@
                             {{form.submit(class="btn btn-info btn-lg")}}
                         </div>
                     </fieldset>
-                    <small>return to admin dashboard: </small>
+                    <small>return to admin dashboard: {{image_link}} </small>
 
                 </form>
             </div>

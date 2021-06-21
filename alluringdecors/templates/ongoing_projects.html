@@ -14,9 +14,18 @@
                     <p> {{category}} </p>
 
                     <h2>{{project.name}}</h2>
-                    <a href="{{url_for('project_detail', project_id=project.id)}}" class="btn btn-lg btn-outline-info shadow ">
+                    <a href="{{url_for('project_detail', project_id=project.id)}}" class="btn btn-lg btn-outline-info shadow">
                         More Details
                     </a>
+                    <div class="ps-4" style="display:inline-block; ">
+                        <a href="{{url_for('project_update', project_id=project.id)}}" class="btn btn-warning me-2">
+                            <i class="icofont icofont-1x icofont-edit-alt"></i>
+                        </a> 
+                        <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                            <i class="icofont icofont-1x icofont-delete-alt"></i>
+                        </a>
+                    </div>
+                    
                 </div>
             </div>
             {% endfor %}
