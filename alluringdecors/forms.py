@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileField, FileAllowed
+from flask_wtf.file import FileAllowed
 from alluringdecors.models import User
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, SelectField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, SelectField, FileField
 from wtforms.validators import (DataRequired, Length, Email , EqualTo, ValidationError)
 
 class RegistrationForm(FlaskForm):
@@ -42,7 +42,7 @@ class NewProjectForm(FlaskForm):
     picture = FileField('Project Image', validators=[FileAllowed(['jpg', 'png'])])
     client = StringField('Client', validators=[DataRequired()])
     description = TextAreaField('Description', validators=[DataRequired()])
-    submit = SubmitField('Create Project')
+    submit = SubmitField('Submit Project')
 
 
 class FAQForm(FlaskForm):
@@ -64,3 +64,35 @@ class ContactForm(FlaskForm):
     title = StringField('Title:', validators=[DataRequired()])
     detail = StringField('Detail:', validators=[DataRequired()])
     submit = SubmitField('Submit Contact')
+
+
+class RequestForm(FlaskForm):
+    choices = (
+        ('house decoration', 'house decoration'),
+        ('office decoration', 'Office Decoration'),
+        ('communityhall decoration', 'CommunityHall Decoration'),
+        ('restaurant decoration', 'Restaurant Decoration')
+    )
+    
+
+    type = SelectField('Services Type:', choices=choices, default="excellent")
+    domain = StringField('Services Domain:', validators=[DataRequired()])
+    location = StringField('Location:',  validators=[DataRequired()])
+    submit = SubmitField('Request Service')
+
+
+class RequestStatusForm(FlaskForm):
+    status = (
+        ('received', 'Received'),
+        ('rejected', 'Rejected'),
+        ('accepted', 'Accepted'),
+        ('began', 'Began'),
+        ('completed', 'Completed'),
+    )
+    status = SelectField('Services Type:', choices=status, default="received")
+    submit = SubmitField('Set Status')
+
+class RemarkForm(FlaskForm):
+    
+    remark = TextAreaField('Services Type:', )
+    submit = SubmitField('Submit Remark')
