@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="container py-3">
+    <div class="row">
+        <div class="col-12 col-md-4 mx-auto py-5">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <p><b>Request By:</b> <span>{{service.service_request.username}}</span></p>
+                </li>
+                <li class="list-group-item">
+                    <p><b>Request By:</b> <span>{{service.type}}</span></p>
+                 </li>
+                <li class="list-group-item"> 
+                    <p><b>Request By:</b> <span>{{service.domain}}</span></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-4 mx-auto">
+            <legend class="py-3">
+                <h3>{{legend}} </h3>
+                <p>Request service in 2 simple steps.!!! </p>
+            </legend>
+            <form action="" method="POST" enctype="multipart/form-data" class="shadow rounded p-3">
+                {{form.hidden_tag()}}
+                <fieldset>
+                    <div class="form-group">
+                        {{form.remark.label(class="form-control-label pb-2")}}
+                        {% if form.remark.errors %}
+                        {{form.remark(class="form-control form-control-lg  is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.remark.errors %}
+                            <span> {{error}} </span>
+                            {% endfor %}
+                            {% else %}
+                            {{form.remark(class="form-control form-control-lg")}}
+                            {% endif %}
+                        </div>
+                        <div class="form-group py-3">
+                            {{form.submit(class="btn btn-info btn-lg")}}
+                        </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
