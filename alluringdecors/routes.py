@@ -4,9 +4,11 @@ from flask import Flask, render_template, url_for, flash, redirect, request
 from alluringdecors.forms import (
                                     RegistrationForm, LoginForm, 
                                     NewProjectForm, ProjectCategoryForm, 
-                                    FAQForm, FeedbackForm, ContactForm
+                                    FAQForm, FeedbackForm, ContactForm,
+                                    RequestForm, RequestStatusForm,
+                                    RemarkForm
                                 )
-from alluringdecors.models import User, Category_project, Project, FAQ, Feedback, Contact
+from alluringdecors.models import User, Category_project, Project, FAQ, Feedback, Contact, Service_request
 from alluringdecors import app, db, bcrypt
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -115,6 +117,32 @@ def new_project():
         flash(f'New Project Created', 'success')
         return redirect(url_for('new_project'))
     return render_template('new_project.html', title='new project', form=form) 
+
+@app.route("/project/<int:project_id>/update", methods=['GET', 'POST'])
+def project_update(project_id):
+    project = Project.query.get_or_404(project_id)
+    form = NewProjectForm()
+    form.category.choices = [(project.id, project.name )for project in Category_project.query.all()]
+    
+    if form.validate_on_submit():
+        if form.picture.data:
+            image_file = save_image(form.picture.data)
+        project.name= form.name.data
+        project.client= form.client.data
+        project.description= form.description.data
+        project.image_file= image_file
+        form.picture.data = project.image_file
+        db.session.commit()
+        flash(f'Project"{project.name}" Successfully Updated', 'success')
+        return redirect(url_for('project_detail', project_id=project.id))
+    elif request.method == 'GET':
+        form.name.data = project.name
+        form.client.data = project.client
+        form.description.data = project.description
+        form.picture.data = project.image_file
+        
+        
+    return render_template('new_project.html', image_link=form.picture.data, title='update Project', legend="Update Project", form=form) 
  
 
 @app.route("/category/create/", methods=['GET', 'POST'])
@@ -140,7 +168,7 @@ def faq():
         db.session.commit()
         flash(f'New FAQ "{form.question.data}" Created', 'success')
         return redirect(url_for('faq'))
-    return render_template('faq.html', title='create category Project', legend="Add Faq", form=form, faqs=faqs) 
+    return render_template('faq.html', title='Add New FAQ', legend="Add Faq", form=form, faqs=faqs) 
 
 
 @app.route("/faq/<int:faq_id>/update", methods=['GET', 'POST'])
@@ -237,3 +265,49 @@ def deactivate_user(id):
     db.session.add(user)
     db.session.commit()
     return redirect(url_for('users')) 
+
+
+@app.route("/service/", methods=['GET','POST'])
+def ServiceRequest():
+    form = RequestForm()
+    if form.validate_on_submit():
+        service_request = Service_request(type=form.type.data, domain=form.domain.data, location=form.location.data, 
+        service_request=current_user)
+        db.session.add(service_request)
+        db.session.commit()
+        flash(f'Service Request Sent', 'success')
+        return redirect(url_for('index'))
+    return render_template('service_form.html', title='Request Form', legend="Request Service Form", form=form) 
+
+
+@app.route("/all_services/")
+def allServices():
+    services = Service_request.query.all()
+    return render_template('all_request.html', title='All requests', services=services,) 
+
+
+@app.route("/service/status/<int:service_id>", methods=['GET','POST'])
+def serviceStatus(service_id):
+    service = Service_request.query.get_or_404(service_id)
+    form = RequestStatusForm()
+    if form.validate_on_submit():
+        service.status = form.status.data
+        db.session.add(service)
+        db.session.commit()
+        return redirect(url_for('allServices')) 
+    elif request.method == 'GET':
+        form.status.data = service.status
+    return render_template('service_status.html', title='update service status', service=service, legend="Update Status", form=form) 
+
+@app.route("/service/add_remark/<int:service_id>", methods=['GET','POST'])
+def serviceRemark(service_id):
+    service = Service_request.query.get_or_404(service_id)
+    form = RemarkForm()
+    if form.validate_on_submit():
+        service.remark = form.remark.data
+        db.session.add(service)
+        db.session.commit()
+        return redirect(url_for('allServices')) 
+    elif request.method == 'GET':
+        form.remark.data = service.remark
+    return render_template('addremark.html', title='Add Remark', service=service, legend="Add Remark", form=form) 
