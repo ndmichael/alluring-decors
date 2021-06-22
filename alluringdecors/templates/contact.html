@@ -8,6 +8,7 @@
                     <div class="col-12 p-3 shadow-sm my-2">
                         <h3>{{contact.title}} </h3>
                         <p>{{contact.detail}}</p>
+                        {% if current_user.is_authenticated and current_user.is_staff %}
                         <a href="{{url_for('contact_update', contact_id=contact.id)}}" class="btn btn-sm btn-warning">
                             update contact
                         </a>
@@ -15,6 +16,7 @@
                         <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
                             delete contact
                         </button>
+                        {% endif %}
                     </div>
                     <!-- modal for delete -->
                     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
@@ -29,7 +31,7 @@
                                 <div class="modal-body">
                                     are you sure you wish to delete contact permanently from the system? <br />
                                     else consider update instead.
-                                </div>
+                                </div>                         
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Close</button>
@@ -43,6 +45,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-5">
+                {% if current_user.is_authenticated and current_user.is_staff %}
                 <legend class="">
                     <h3>{{legend}} </h3>
                 </legend>
@@ -85,6 +88,7 @@
                     <small>return to admin dashboard: </small>
 
                 </form>
+                {% endif %}
             </div>
 
         </div>
