@@ -252,7 +252,7 @@ def contact_delete(contact_id):
 @app.route("/admin/")
 @login_required
 def admin():
-    if not current_user and not current_user.is_staff: 
+    if not current_user.is_staff: 
         abort(403)
     return render_template('admin.html', title='admin') 
 
