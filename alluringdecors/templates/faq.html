@@ -8,18 +8,19 @@
                     <div class="col-12 p-3 shadow-sm my-2">
                         <h3>{{faq.question}} </h3>
                         <p>{{faq.answer}}</p>
-
+                        {% if current_user.is_authenticated and current_user.is_staff %}
                         <a href="{{url_for('faq_update', faq_id=faq.id)}}" class="btn btn-sm btn-warning">
                             update faq
                         </a>
 
-                        <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                        <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete{{faq.id}}">
                             delete faq
                         </button>
+                        {% endif %}
                     </div>
 
                     <!-- modal for delete -->
-                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                    <div class="modal fade" id="delete{{faq.id}}" tabindex="-1" aria-labelledby="deleteModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -45,6 +46,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-5">
+                {% if current_user.is_authenticated and current_user.is_staff %}
                 <legend class="">
                     <h3> {{title}} </h3>
                 </legend>
@@ -84,9 +86,9 @@
                             {{form.submit(class="btn btn-info btn-lg")}}
                         </div>
                     </fieldset>
-                    <small>return to admin dashboard: </small>
-
+                    <small><a href="{{url_for('admin')}}"><b>return to admin dashboard </b></a> </small>
                 </form>
+                {% endif %}
             </div>
 
         </div>
