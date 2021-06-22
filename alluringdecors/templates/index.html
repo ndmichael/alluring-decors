@@ -9,10 +9,9 @@
                     design, art, humor, irony, functionality, and the street.
                 </p>
                 <p class="pt-4">
-                    <a href="{{url_for('ServiceRequest')}}">
-                        <button class="btn btn-lg rounded-pill btn-info shadow-lg">
-                            Request Service
-                        </button>
+                    <a href="{{url_for('ServiceRequest')}}"
+                        class="d-grid col-6 shadow btn btn-lg btn-block btn-info rounded-pill">
+                        Request Service
                     </a>
                 </p>
             </div>
@@ -41,17 +40,17 @@
         </div>
         <div class="row pt-4">
             <div class="col-12 col-sm-3">
-                <a class="shadow-sm service">
+                <a class="shadow-sm service" href="{{url_for('home_decor')}}" >
                     <img src="{{url_for('static',filename='images/house1.jpg')}}" alt="" class="img-fluid" />
                     <div class="p-3">
                         <small class="secondary_color">Interior & Exterior Designs </small>
                         <h3 class="pt-2 pb-4">House Decoration</h3>
                     </div>
                 </a>
-
             </div>
+
             <div class="col-12 col-sm-3">
-                <a class="shadow-sm service">
+                <a class="shadow-sm service" href="{{url_for('office_decor')}}">
                     <img src="{{url_for('static',filename='images/office1.jpg')}}" alt="" class="img-fluid" />
                     <div class="p-3">
                         <small class="secondary_color">Decoration & Furnishing </small>
@@ -60,7 +59,7 @@
                 </a>
             </div>
             <div class="col-12 col-sm-3">
-                <a class="shadow-sm service">
+                <a class="shadow-sm service" href="{{url_for('banquet_decor')}}" >
                     <img src="{{url_for('static',filename='images/hall1.jpg')}}" alt="" class="img-fluid" />
                     <div class="p-3">
                         <small class="secondary_color">Banquet, & Parties </small>
@@ -69,7 +68,7 @@
                 </a>
             </div>
             <div class="col-12 col-sm-3">
-                <a class="shadow-sm service">
+                <a class="shadow-sm service" href="{{url_for('restaurant_decor')}}">
                     <img src="{{url_for('static',filename='images/restaurant1.jpg')}}" alt="" class="img-fluid" />
                     <div class="p-3">
                         <small class="secondary_color">Decorating & Furnsihing </small>
@@ -82,7 +81,7 @@
         <div class="row pt-5">
             <div class="col-12 col-sm-8 mx-auto pt-3">
                 <a href="#" class=" d-grid col-12 col-md-6 mx-auto">
-                    <button class="btn btn-lg btn-block btn-info rounded-pill"> View All Services </button>
+                    <button class="btn btn-lg btn-block btn-info rounded-pill"> Request Service Now </button>
                 </a>
             </div>
         </div>
@@ -94,7 +93,8 @@
         <div class="row">
             <div class="col-12 col-md-6">
                 <div>
-                    <img src="{{url_for('static',filename='images/project1.jpg')}}" alt="" class="img-fluid shadow-lg" />
+                    <img src="{{url_for('static',filename='images/project1.jpg')}}" alt=""
+                        class="img-fluid shadow-lg" />
                 </div>
             </div>
 
@@ -110,8 +110,9 @@
                         Ipsum aute fugiat qui velit irure tempor.
                     </p>
                     <div>
-                        <a href="{{url_for('project')}}" class=" d-grid col-6 shadow btn btn-lg btn-block btn-info rounded-pill">
-                            View Projects 
+                        <a href="{{url_for('project')}}"
+                            class=" d-grid col-6 shadow btn btn-lg btn-block btn-info rounded-pill">
+                            View Projects
                         </a>
                     </div>
                 </div>
