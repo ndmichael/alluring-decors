@@ -9,9 +9,9 @@
                     <div class="">
                         <h3 class="h5">Name: <span> {{user.username}} </span></h3>
                         <p><b>Email</b>: {{user.email}} </p>
-                            <p><b>Staff</b>: {{user.is_staff}}  <br /></p>
+                        <p><b>Staff</b>: {{user.is_staff}} {{user.id}} <br /></p>
 
-                        <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                        <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#test{{user.id}}">
                             <i class="icofont icofont-1x icofont-delete-alt"></i>
                         </a>
                     </div>
@@ -19,28 +19,29 @@
             </div>
 
             <!-- modal for delete -->
-                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                    <div class="modal fade" id="test{{user.id}}" tabindex="-1" aria-labelledby="deleteModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="deleteModalLabel">Delete User</h5>
+                                    <h5 class="modal-title" id="deleteModalLabel">Delete Contact</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    This temporary delete a user <br />
-                                    user exist in database but not active.
+                                    Temporarily remove user from the system? <br />
+                                    else consider update instead.
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Close</button>
-                                    <a href="{{url_for('deactivate_user', id=user.id)}}" type="button"
-                                        class="btn btn-danger">Delete</a>
+                                    <a href="{{url_for('deactivate_user', user_id=user.id)}}" type="button"
+                                        class="btn btn-danger">Delete {{user.id}}</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+            
             {% endfor %}
 
         </div>
