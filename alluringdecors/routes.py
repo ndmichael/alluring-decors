@@ -1,6 +1,6 @@
 import secrets
 import os
-from flask import Flask, render_template, url_for, flash, redirect, request
+from flask import Flask, render_template, url_for, flash, redirect, request, abort
 from alluringdecors.forms import (
                                     RegistrationForm, LoginForm, 
                                     NewProjectForm, ProjectCategoryForm, 
@@ -250,17 +250,25 @@ def contact_delete(contact_id):
 
 
 @app.route("/admin/")
+@login_required
 def admin():
+    if not current_user and not current_user.is_staff: 
+        abort(403)
     return render_template('admin.html', title='admin') 
 
 @app.route("/users/")
+@login_required
 def users():
+    if (not current_user.is_staff):
+        flash(f'Access Denied', 'danger')
+        return redirect(url_for('ServiceRequest'))    
     users = User.query.filter_by(is_active=True).order_by(User.id.desc())
     return render_template('users.html', title='users', users=users) 
 
-@app.route("/users/<int:id>")
-def deactivate_user(id):
-    user = User.query.get_or_404(id)
+@app.route("/users/<int:user_id>/delete")
+@login_required
+def deactivate_user(user_id):
+    user = User.query.get_or_404(user_id)
     user.is_active = False
     db.session.add(user)
     db.session.commit()
@@ -311,3 +319,23 @@ def serviceRemark(service_id):
     elif request.method == 'GET':
         form.remark.data = service.remark
     return render_template('addremark.html', title='Add Remark', service=service, legend="Add Remark", form=form) 
+
+
+@app.route("/service/home/")
+def home_decor():
+    return render_template('home_decor.html', title='Home Decoration') 
+
+
+@app.route("/service/office/")
+def office_decor():
+    return render_template('office_decor.html', title='Office Decoration') 
+
+
+@app.route("/service/restaurant/")
+def restaurant_decor():
+    return render_template('restaurant_decor.html', title='Restaurant Decoration') 
+
+
+@app.route("/service/bonquet/")
+def banquet_decor():
+    return render_template('banquet_decor.html', title='Banquet Decoration') 
