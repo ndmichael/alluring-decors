@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <section>
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-responsive">
+                    <thead class="table-info">
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Rating</th>
+                            <th scope="col">Suggestion</th>
+                            <th scope="col">Date Sent</th>
+                        </tr>
+                    </thead>
+                    {% for feedback in feedbacks %}
+                    <tbody>
+                        <tr>
+                            <th scope="row">{{feedback.feedback.username}}</th>
+                            <td>{{feedback.quality}}</td>
+                            <td>{{feedback.suggestion}}</td>
+                            <td>{{feedback.date_sent.strftime('%Y-%m-%d')}}</td>
+                        </tr>
+
+                    </tbody>
+                    {% endfor %}
+                </table> 
+                
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
