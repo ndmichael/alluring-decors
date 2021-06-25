@@ -56,7 +56,7 @@ def login():
             flash(f'You are login as {user.username}', 'success')
             return redirect(next_page) if next_page else redirect(url_for('index'))
         else:
-            flash(f'login unsuccessful check email or password', 'success')
+            flash(f'login unsuccessful check email or password', 'danger')
     return render_template("login.html", title='Login', form=form)
 
 
@@ -109,11 +109,16 @@ def new_project():
     if form.validate_on_submit():
         if form.picture.data:
             image_file = save_image(form.picture.data)
-        project = Project(name=form.name.data, client=form.client.data, image_file=image_file,
+            project = Project(name=form.name.data, client=form.client.data, image_file=image_file,
          description=form.description.data, 
         category_id=form.category.data)
-        db.session.add(project)
-        db.session.commit()
+            db.session.add(project)
+            db.session.commit()
+        else:
+            project = Project(name=form.name.data, client=form.client.data, description=form.description.data, 
+        category_id=form.category.data)
+            db.session.add(project)
+            db.session.commit()
         flash(f'New Project Created', 'success')
         return redirect(url_for('new_project'))
     return render_template('new_project.html', title='new project', form=form) 
@@ -127,6 +132,7 @@ def project_update(project_id):
     if form.validate_on_submit():
         if form.picture.data:
             image_file = save_image(form.picture.data)
+        project.category_id= form.category.data 
         project.name= form.name.data
         project.client= form.client.data
         project.description= form.description.data
@@ -139,11 +145,17 @@ def project_update(project_id):
         form.name.data = project.name
         form.client.data = project.client
         form.description.data = project.description
-        form.picture.data = project.image_file
-        
-        
+        form.picture.data = project.image_file    
     return render_template('new_project.html', image_link=form.picture.data, title='update Project', legend="Update Project", form=form) 
  
+
+@app.route("/project/<int:project_id>/delete", methods=['GET','POST'])
+def project_delete(project_id):
+    project = Project.query.get_or_404(project_id)
+    db.session.delete(project)
+    db.session.commit()
+    flash(f'"{project.name}" deleted', 'danger')
+    return redirect(url_for('new_project'))
 
 @app.route("/category/create/", methods=['GET', 'POST'])
 def project_category(): 
@@ -207,7 +219,12 @@ def feedback():
         db.session.commit()
         flash(f'Feedback sent successfully', 'success')
         return redirect(url_for('index'))
-    return render_template('feedbackform.html', title='send feedback', form=form)
+    return render_template('feedbackform.html', title='send feedback', form=form, legend="Send Us a Feedback")
+
+@app.route("/feedback/all/")
+def all_feedback():
+    feedbacks = Feedback.query.order_by(Feedback.date_sent.desc())
+    return render_template('allfeedbacks.html', title='send feedback', feedbacks=feedbacks,)
 
 
 
@@ -289,7 +306,10 @@ def ServiceRequest():
 
 
 @app.route("/all_services/")
+@login_required
 def allServices():
+    if not current_user.is_staff:
+        abort(403)
     services = Service_request.query.all()
     return render_template('all_request.html', title='All requests', services=services,) 
 
