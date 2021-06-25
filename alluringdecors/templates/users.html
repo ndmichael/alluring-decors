@@ -4,12 +4,12 @@
         <div class="row">
             {% for user in users %}
             <div class="col-12 col-md-4">
-                <div>
-                    <i class="icofont icofont-5x icofont-user-alt-1 border-end icofont-pull-left pt-5"></i>
-                    <div class="">
+                <div class="py-4">
+                    <i class="icofont icofont-6x icofont-user-alt-1 border-end icofont-pull-left pt-5"></i>
+                    <div class="pl-2">
                         <h3 class="h5">Name: <span> {{user.username}} </span></h3>
                         <p><b>Email</b>: {{user.email}} </p>
-                        <p><b>Staff</b>: {{user.is_staff}} {{user.id}} <br /></p>
+                        <p><b>Staff</b>: {{user.is_staff}}<br /></p>
 
                         <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#test{{user.id}}">
                             <i class="icofont icofont-1x icofont-delete-alt"></i>
