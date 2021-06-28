@@ -31,15 +31,43 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{url_for('about')}}">About Us</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url_for('project')}}">Projects</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Projects
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="nav-link" href="{{url_for('project')}}">All Projects</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="nav-link" href="{{url_for('ongoing_project', slug='ongoing project')}}">Ongoing</a></li>
+                            
+                            <li><a class="nav-link" href="{{url_for('upcoming_project', slug='upcoming project')}}">Upcoming</a></li>
+                            <li><a class="nav-link" href="{{url_for('accomplished_project', slug='accomplished project')}}">Accomplished</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Services</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Services
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="nav-link" href="{{url_for('home_decor')}}">For Homes</a></li>
+                            <li><a class="nav-link" href="{{url_for('office_decor')}}">For Offices</a></li>                           
+                            <li><a class="nav-link" href="{{url_for('restaurant_decor')}}">For Restaurants</a></li>
+                            <li><a class="nav-link" href="{{url_for('banquet_decor')}}">For Banquents</a></li>
+                        </ul>
                     </li>
+                    {% if current_user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{url_for('feedback')}}">Feedbacks</a>
                     </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('login')}}">Feedbacks</a>
+                    </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{url_for('faq')}}">FAQ</a>
                     </li>
@@ -54,6 +82,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{url_for('users')}}">
                             Users
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('all_feedback')}}">
+                            View Feedbacks
                         </a>
                     </li>
                     {% endif %}
@@ -115,7 +148,8 @@
                     <div>
                         <p><b class=" secondary_color"> &copy; </b> Alluring Decoration | Terms | Aptech Final Year
                             Project </p>
-                        <p>Design by <b class="secondary_color">Umaru Sadiq </b>
+                        <p>Design by <b class="secondary_color">Umaru Sadiq </b> |
+                        <b class="secondary_color">Abdulkadir Abdulla </b>
                     </div>
 
                 </div>
