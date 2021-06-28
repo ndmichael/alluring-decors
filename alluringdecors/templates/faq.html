@@ -2,11 +2,11 @@
 <section class="">
     <div class="container py-5">
         <div class="row">
-            <div class="col-12 col-md-5 mx-auto">
+            <div class="col-12 col-md-7 mx-auto">
                 <div class="row">
                 {% for faq in faqs %}
                     <div class="col-12 p-3 shadow-sm my-2">
-                        <h3>{{faq.question}} </h3>
+                        <h3 class="h5">{{faq.question}} </h3>
                         <p>{{faq.answer}}</p>
                         {% if current_user.is_authenticated and current_user.is_staff %}
                         <a href="{{url_for('faq_update', faq_id=faq.id)}}" class="btn btn-sm btn-warning">
@@ -30,23 +30,24 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    are you sure you wish to delete FAQ permanently from the system? <br />
+                                    FAQ permanently from the system? <br />
                                     else consider update instead.
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Close</button>
                                     <a href="{{url_for('faq_delete', faq_id=faq.id)}}" type="button"
-                                        class="btn btn-danger">Delete {{faq.id}}</a>
+                                        class="btn btn-danger">Delete</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 {% endfor %}
                 </div>
             </div>
+            {% if current_user.is_authenticated and current_user.is_staff %}
             <div class="col-12 col-md-5">
-                {% if current_user.is_authenticated and current_user.is_staff %}
                 <legend class="">
                     <h3> {{title}} </h3>
                 </legend>
@@ -86,10 +87,10 @@
                             {{form.submit(class="btn btn-info btn-lg")}}
                         </div>
                     </fieldset>
-                    <small><a href="{{url_for('admin')}}"><b>return to admin dashboard </b></a> </small>
+                    <small><a href="{{url_for('admin')}}" class="admin"><b>return to admin dashboard </b></a> </small>
                 </form>
-                {% endif %}
             </div>
+            {% endif %}
 
         </div>
     </div>
