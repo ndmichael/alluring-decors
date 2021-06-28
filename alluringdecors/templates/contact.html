@@ -44,8 +44,9 @@
                     {% endfor %}
                 </div>
             </div>
+            {% if current_user.is_authenticated and current_user.is_staff %}
             <div class="col-12 col-md-5">
-                {% if current_user.is_authenticated and current_user.is_staff %}
+            
                 <legend class="">
                     <h3>{{legend}} </h3>
                 </legend>
@@ -88,8 +89,8 @@
                     <small>return to admin dashboard: </small>
 
                 </form>
-                {% endif %}
             </div>
+            {% endif %}
 
         </div>
     </div>
