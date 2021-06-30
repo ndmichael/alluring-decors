@@ -79,8 +79,9 @@
                             {{form.submit(class="btn btn-info btn-lg")}}
                         </div>
                     </fieldset>
-                    <small>return to admin dashboard: {{image_link}} </small>
-
+                    {% if current_user.is_authenticated and current_user.is_staff %}
+                    <small><a href="{{url_for('admin')}}" class="admin"><b>return to admin dashboard </b></a> </small>
+                    {% endif %}
                 </form>
             </div>
 
