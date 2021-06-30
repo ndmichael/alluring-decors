@@ -2,24 +2,34 @@
 <header id="header">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-6 py-4 pr-4">
-                <h1 class="" style="text-transform:uppercase;">Interior & Exterior Decoration for your Designs.</h1>
+            <div class="col-12 col-md-6 py-2 py-md-4 pr-0 pr-md-2">
+                <p>Interior & Exterior </p>
+                <h1 class="pl-0 ml-0" style="text-transform:uppercase;">Alluring Decoration, for your Designs.</h1>
                 <p class="pt-2">
                     Our interiors are an insight into our brains. It is a collaboration of
                     design, art, humor, irony, functionality, and the street.
                 </p>
+                {% if current_user.is_authenticated %}
                 <p class="pt-4">
                     <a href="{{url_for('ServiceRequest')}}"
-                        class="d-grid col-6 shadow btn btn-lg btn-block btn-info rounded-pill">
+                        class="d-grid col-12 col-md-6 shadow btn btn-lg btn-block btn-info rounded-pill">
                         Request Service
                     </a>
                 </p>
+                {% else %}
+                <p class="pt-2 pt-md-4">
+                    <a href="{{url_for('login')}}"
+                        class="d-grid col-12 col-md-6 shadow btn btn-lg btn-block btn-info rounded-pill">
+                        Request Service
+                    </a>
+                </p>
+                {% endif %}
             </div>
 
             <div class="col-12 col-md-6">
                 <div>
                     <img src="{{url_for('static',
-        filename='images/undraw_creative_team_r90h.svg')}}" class="img-fluid" />
+        filename='images/undraw_creative_team_r90h.svg')}}" class="img-fluid hero-img" />
                 </div>
             </div>
         </div>
@@ -39,8 +49,8 @@
             </div>
         </div>
         <div class="row pt-4">
-            <div class="col-12 col-sm-3">
-                <a class="shadow-sm service" href="{{url_for('home_decor')}}" >
+            <div class="col-12 col-sm-3 my-2">
+                <a class="shadow-sm service " href="{{url_for('home_decor')}}" >
                     <img src="{{url_for('static',filename='images/house1.jpg')}}" alt="" class="img-fluid" />
                     <div class="p-3">
                         <small class="secondary_color">Interior & Exterior Designs </small>
@@ -49,7 +59,7 @@
                 </a>
             </div>
 
-            <div class="col-12 col-sm-3">
+            <div class="col-12 col-sm-3 my-2">
                 <a class="shadow-sm service" href="{{url_for('office_decor')}}">
                     <img src="{{url_for('static',filename='images/office1.jpg')}}" alt="" class="img-fluid" />
                     <div class="p-3">
@@ -58,7 +68,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-12 col-sm-3">
+            <div class="col-12 col-sm-3 my-2">
                 <a class="shadow-sm service" href="{{url_for('banquet_decor')}}" >
                     <img src="{{url_for('static',filename='images/hall1.jpg')}}" alt="" class="img-fluid" />
                     <div class="p-3">
@@ -67,7 +77,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-12 col-sm-3">
+            <div class="col-12 col-sm-3 my-2">
                 <a class="shadow-sm service" href="{{url_for('restaurant_decor')}}">
                     <img src="{{url_for('static',filename='images/restaurant1.jpg')}}" alt="" class="img-fluid" />
                     <div class="p-3">
@@ -80,9 +90,15 @@
 
         <div class="row pt-5">
             <div class="col-12 col-sm-8 mx-auto pt-3">
-                <a href="#" class=" d-grid col-12 col-md-6 mx-auto">
+            {% if current_user.is_authenticated %}
+                <a href="{{url_for('ServiceRequest')}}" class=" d-grid col-12 col-md-6 mx-auto">
                     <button class="btn btn-lg btn-block btn-info rounded-pill"> Request Service Now </button>
                 </a>
+            {% else %}
+                <a href="{{url_for('login')}}" class=" d-grid col-12 col-md-6 mx-auto">
+                    <button class="btn btn-lg btn-block btn-info rounded-pill"> Request Service Now </button>
+                </a>
+            {% endif %}
             </div>
         </div>
     </div>
@@ -111,7 +127,7 @@
                     </p>
                     <div>
                         <a href="{{url_for('project')}}"
-                            class=" d-grid col-6 shadow btn btn-lg btn-block btn-info rounded-pill">
+                            class=" d-grid col-12 col-md-6 shadow btn btn-lg btn-block btn-info rounded-pill">
                             View Projects
                         </a>
                     </div>
