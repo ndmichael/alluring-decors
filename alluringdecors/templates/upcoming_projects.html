@@ -14,16 +14,54 @@
                     <p> {{category}} </p>
 
                     <h2>{{project.name}}</h2>
-                    <a href="{{url_for('project_detail', project_id=project.id)}}" class="btn btn-lg btn-outline-info">
+                    {% if current_user.is_authenticated %}
+                    <a href="{{url_for('project_detail', project_id=project.id)}}"
+                        class="btn btn-lg btn-outline-info shadow">
                         More Details
                     </a>
+                    {% else %}
+                    <a href="{{url_for('login')}}" class="btn btn-lg btn-outline-info shadow">
+                        More Details
+                    </a>
+                    {% endif %}
+                    {% if current_user.is_authenticated and current_user.is_staff %}
+                    <div class="ps-4" style="display:inline-block; ">
+                        <a href="{{url_for('project_update', project_id=project.id)}}" class="btn btn-warning me-2">
+                            <i class="icofont icofont-1x icofont-edit-alt"></i>
+                        </a>
+                        <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete{{project.id}}">
+                            <i class="icofont icofont-1x icofont-delete-alt"></i>
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <!-- modal for delete -->
+            <div class="modal fade" id="delete{{project.id}}" tabindex="-1" aria-labelledby="deleteModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalLabel">Delete Contact</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Project permanently from the system? <br />
+                            else consider update instead.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <a href="{{url_for('project_delete', project_id=project.id)}}" type="button"
+                                class="btn btn-danger">Delete {{project.id}}</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             {% else %}
             <div class="col-12 col-md-6 py-4">
                 <div>
                     <h2>Category Empty</h2>
-                    
+                    <p>Add a new project here </p>
                 </div>
             </div>
             {% endfor %}
